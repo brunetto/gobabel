@@ -1,62 +1,62 @@
 package main
 
 import (
+	"fmt"
 	"math"
+	"os"
 )
 
-type vec struc {
-	x float64
-	y float64
-	z float64
+type body struc {
+	x, y, z, vx, vy, vz, ax, ay, az, a0x, a0y, a0z, m float64
 }
 
 var (
-	n int64 					// number of particles
-	m = make([]float64, 0)	 	// particle masses
-	r = make([]vec, 0)			// particle radii
-	v = make([]vec, 0)			// particle velocities
-	a = make([]vec, 0)			// particle accelerations
-	a0  = make([]vec, 0)		// particle Prev accelerations
-	rij = new{vec}				// distance between two particles
+// 	m = make([]float64, 0)	 	// particle masses
+// 	r = make([]vec, 0)			// particle radii
+// 	v = make([]vec, 0)			// particle velocities
+// 	a = make([]vec, 0)			// particle accelerations
+// 	a0  = make([]vec, 0)		// particle Prev accelerations
+	bodies = make([]*body, 0)
+	rij = new(struct{x, y, z float64})				// distance between two particles
 )
 
 func acceleration () () {
 	// Reset acceleration
-	for idx := 0; idx<len(); idx++ {
-		a[i].x = 0
-		a[i].y = 0
-		a[i].z = 0
+	for idx := 0; idx<len(bodies); idx++ {
+		bodies[i].ax = 0
+		bodies[i].ay = 0
+		bodies[i].az = 0
 	}
 	
 	// Calculate ??
-	for i:=0; i<n; i++ {
+	for i:=0; i<len(bodies); i++ {
 		for j:=i+1; j<n; j++ {
-			rij.x = r[i].x - r[j].x
-			rij.y = r[i].y - r[j].y
-			rij.z = r[i].z - r[j].z
+			rij.x = bodies[i].x - bodies[j].x
+			rij.y = bodies[i].y - bodies[j].y
+			rij.z = bodies[i].z - bodies[j].z
 			// ??
 			RdotR = (rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z)
 			apre  = 1.0 / math.Sqrt(RdotR * RdotR * RdotR)
 		
 			//Update acceleration
-			a[i].x -= m[j] * apre * rij.x
-			a[i].y -= m[j] * apre * rij.y
-			a[i].z -= m[j] * apre * rij.z
+			bodies[i].ax -= bodies[j].m * apre * rij.x
+			bodies[i].ay -= bodies[j].m * apre * rij.y
+			bodies[i].az -= bodies[j].m * apre * rij.z
 		}
 	}
 }
 
 // Update positions
 func updatePositions (dt float64) () {
-	for i:=0; i<n; i++ {
+	for i:=0; i<len(bodies); i++ {
 		// Update the positions, based on the calculated accelerations and velocities
-		a0[i].x = a[i].x
-		a0[i].y = a[i].y
-		a0[i].z = a[i].z
+		[i].a0x = bodies[i].ax
+		[i].a0y = bodies[i].ay
+		[i].a0z = bodies[i].az
 		// For each axis (x/y/z)
-		r[i].x += dt * v[i].x + 0.5 * dt * dt * a0[i].x
-		r[i].y += dt * v[i].y + 0.5 * dt * dt * a0[i].y
-		r[i].z += dt * v[i].z + 0.5 * dt * dt * a0[i].z
+		bodies[i].x += dt * bodies[i].vx + 0.5 * dt * dt * bodies[i].a0x
+		bodies[i].y += dt * bodies[i].vy + 0.5 * dt * dt * bodies[i].a0y
+		bodies[i].z += dt * bodies[i].vz + 0.5 * dt * dt * bodies[i].a0z
 	}
 	
 }
@@ -64,15 +64,15 @@ func updatePositions (dt float64) () {
 // Update velocities based on previous and new accelerations
 func updateVelocities (dt float64) () {
 	//Update the velocities based on the previous and old accelerations
-	for i:=0; i<n; i++ {
-		v[i].x += 0.5 * dt * (a0[i].x + a[i].x)
-		v[i].y += 0.5 * dt * (a0[i].y + a[i].y)
-		v[i].z += 0.5 * dt * (a0[i].z + a[i].z)
+	for i:=0; i<len(bodies); i++ {
+		bodies[i].vx += 0.5 * dt * (bodies[i].a0x + bodies[i].ax)
+		bodies[i].vy += 0.5 * dt * (bodies[i].a0y + bodies[i].ay)
+		bodies[i].vz += 0.5 * dt * (bodies[i].a0z + bodies[i].az)
 		
 		// Update accelerations 
-		a0[i].x = a[i].x
-		a0[i].y = a[i].y
-		a0[i].z = a[i].z
+		bodies[i].a0x = bodies[i].ax
+		bodies[i].a0y = bodies[i].ay
+		bodies[i].a0z = bodies[i].az
 	}  
 } 
 
@@ -84,19 +84,19 @@ void energies () (EKin, EPot float64) {
 	EKin = 0
 	
 	//Kinetic energy
-	for i:=0; i<n; i++ {
-		EKin += 0.5 * m[i] * v[i].x * v[i].x + v[i].y * v[i].y + v[i].z * v[i].z
+	for i:=0; i<len(bodies); i++ {
+		EKin += 0.5 * bodies[i].m * bodies[i].vx * bodies[i].vx + bodies[i].vy * bodies[i].vy + bodies[i].vz * bodies[i].vz
 	}
 	
 	//Potential energy
-	for i:=0; i<n; i++ {
-		for j:=i+1; j<n; j++ {
+	for i:=0; i<len(bodies); i++ {
+		for j:=i+1; j<len(bodies); j++ {
 			//Distance between the two stars
-			rij.x = r[i].x - r[j].x
-			rij.y = r[i].y - r[j].y
-			rij.z = r[i].z - r[j].z
+			rij.x = bodies[i].x - bodies[j].x
+			rij.y = bodies[i].y - bodies[j].y
+			rij.z = bodies[i].z - bodies[j].z
 
-			EPot -= (m[i] * m[j]) / math.Sqrt((rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z))
+			EPot -= (bodies[i].m * bodies[j].m) / math.Sqrt((rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z))
 		}
 	}
 	return EKin, EPot
@@ -104,9 +104,62 @@ void energies () (EKin, EPot float64) {
 
 
 func main () (int) {
+	inFileName = os.Args[1]
+	if inFile, err := os.Open(inFileName); err != nil {log.Fatal(err)}
+	defer inFile.Close()
+
+	//Start time, end time and simulation step
+	var (
+		t float64    = 0.0
+		tend float64 = 1.0
+		dt float64   = 1e-3
+		k float64    = 0
+		kinEnergy, potEnergy, totEnergy, totEnergy0, dE float64
+	)
 
 	
+	for {
+		bd := new(body)
+		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f ", _, bd.mass, bd.x, bd.y, bd.z, bd.vx, bd.vy, bd.vx); err.Error() == "EOF" {
+			break
+		}
+		bodies = append(bodies, bd)
+	}
 	
+	// Compute initial energy of the system
+	kinEnergy, potEnerg = energies()
+	totEnergy0 = kinEnergy+potEnergy
+	
+	fmt.Println("Energies: ", kinEnergy, potEnerg, totEnergy0)
+	
+	//Initialize the accelerations
+	acceleration()
+	
+	//Start the main loop
+	for {
+		if t < tend {return 1}
+		
+		// Update positions based on velocities and accelerations
+		updatePositions(dt)
+		
+		// Get new accelerations
+		acceleration()
+		
+		// Update velocities
+		updateVelocities(dt)
+		
+		// Update time
+		t += dt
+		k += 1
+		
+		if k%10 == 0 {
+			kinEnergy, potEnerg = energies()
+			totEnergy0 = kinEnergy+potEnergy
+			dE = (totEnergy-totEnergy0) / totEnergy0
+			
+			fmt.Printf("t= %f E=: %f %f %f dE = %f\n", t, totEnergy, kinEnergy, potEnergy, dE)
+		}	
+	}	
 }
 
 
