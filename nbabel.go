@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-type body struc {
+type body struct {
 	x, y, z, vx, vy, vz, ax, ay, az, a0x, a0y, a0z, m float64
 }
 
@@ -22,21 +22,20 @@ var (
 
 func acceleration () () {
 	// Reset acceleration
-	for idx := 0; idx<len(bodies); idx++ {
+	for i:=0; i<len(bodies); i++ {
 		bodies[i].ax = 0
 		bodies[i].ay = 0
 		bodies[i].az = 0
 	}
-	
 	// Calculate ??
 	for i:=0; i<len(bodies); i++ {
-		for j:=i+1; j<n; j++ {
+		for j:=i+1; j<len(bodies); j++ {
 			rij.x = bodies[i].x - bodies[j].x
 			rij.y = bodies[i].y - bodies[j].y
 			rij.z = bodies[i].z - bodies[j].z
 			// ??
-			RdotR = (rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z)
-			apre  = 1.0 / math.Sqrt(RdotR * RdotR * RdotR)
+			RdotR := (rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z)
+			apre  := 1.0 / math.Sqrt(RdotR * RdotR * RdotR)
 		
 			//Update acceleration
 			bodies[i].ax -= bodies[j].m * apre * rij.x
@@ -50,9 +49,9 @@ func acceleration () () {
 func updatePositions (dt float64) () {
 	for i:=0; i<len(bodies); i++ {
 		// Update the positions, based on the calculated accelerations and velocities
-		[i].a0x = bodies[i].ax
-		[i].a0y = bodies[i].ay
-		[i].a0z = bodies[i].az
+		bodies[i].a0x = bodies[i].ax
+		bodies[i].a0y = bodies[i].ay
+		bodies[i].a0z = bodies[i].az
 		// For each axis (x/y/z)
 		bodies[i].x += dt * bodies[i].vx + 0.5 * dt * dt * bodies[i].a0x
 		bodies[i].y += dt * bodies[i].vy + 0.5 * dt * dt * bodies[i].a0y
@@ -80,7 +79,7 @@ func updateVelocities (dt float64) () {
 // Compute the energy of the system, 
 // contains an expensive O(N^2) part which can be moved to the acceleration part
 // where this is already calculated
-void energies () (EKin, EPot float64) {
+func energies () (EKin, EPot float64) {
 	EKin = 0
 	
 	//Kinetic energy
@@ -103,41 +102,45 @@ void energies () (EKin, EPot float64) {
 }
 
 
-func main () (int) {
-	inFileName = os.Args[1]
-	if inFile, err := os.Open(inFileName); err != nil {log.Fatal(err)}
-	defer inFile.Close()
-
-	//Start time, end time and simulation step
+func main () {
 	var (
 		t float64    = 0.0
 		tend float64 = 1.0
 		dt float64   = 1e-3
-		k float64    = 0
+		k int    = 0
 		kinEnergy, potEnergy, totEnergy, totEnergy0, dE float64
+		inFileName string
+		inFile *os.File
+		outFile *os.File
+		err error
+		minusOne int
 	)
-
+	
+	inFileName = os.Args[1]
+	
+	if inFile, err = os.Open(inFileName); err != nil {panic(err)}
+	defer inFile.Close()
 	
 	for {
 		bd := new(body)
-		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f ", _, bd.mass, bd.x, bd.y, bd.z, bd.vx, bd.vy, bd.vx); err.Error() == "EOF" {
+		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n", 
+			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vx)); err != nil {
 			break
 		}
 		bodies = append(bodies, bd)
 	}
-	
+	fmt.Println("Read ", len(bodies), "lines")
 	// Compute initial energy of the system
-	kinEnergy, potEnerg = energies()
+	kinEnergy, potEnergy = energies()
 	totEnergy0 = kinEnergy+potEnergy
 	
-	fmt.Println("Energies: ", kinEnergy, potEnerg, totEnergy0)
+	fmt.Printf("Starting: Etot0=%f Ek0=%f Ep0=%f\n", totEnergy0, kinEnergy, potEnergy)
 	
 	//Initialize the accelerations
 	acceleration()
-	
 	//Start the main loop
 	for {
-		if t < tend {return 1}
+		if t > tend {break}
 		
 		// Update positions based on velocities and accelerations
 		updatePositions(dt)
@@ -153,13 +156,19 @@ func main () (int) {
 		k += 1
 		
 		if k%10 == 0 {
-			kinEnergy, potEnerg = energies()
-			totEnergy0 = kinEnergy+potEnergy
+			kinEnergy, potEnergy = energies()
+			totEnergy = kinEnergy+potEnergy
 			dE = (totEnergy-totEnergy0) / totEnergy0
 			
-			fmt.Printf("t= %f E=: %f %f %f dE = %f\n", t, totEnergy, kinEnergy, potEnergy, dE)
+			fmt.Printf("\rt= %f Etot=%f Etot0=%f Ek=%f Ep=%f dE=%f", t, totEnergy, totEnergy0, kinEnergy, potEnergy, dE)
 		}	
 	}	
+	fmt.Println()
+	outFile, err = os.Create("babelDump.dat")
+	for i:=0; i<len(bodies); i++ {
+		fmt.Fprintf(outFile, "%d %f %f %f %f %f %f %f\n", 
+			minusOne, bodies[i].m, bodies[i].x, bodies[i].y, bodies[i].z, bodies[i].vx, bodies[i].vy, bodies[i].vx)
+	}
 }
 
 
