@@ -4,36 +4,39 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"time"
+	
+	"github.com/brunetto/goutils/debug"
+
 )
+
+var Debug = false
 
 type body struct {
 	x, y, z, vx, vy, vz, ax, ay, az, a0x, a0y, a0z, m float64
 }
 
 var (
-// 	m = make([]float64, 0)	 	// particle masses
-// 	r = make([]vec, 0)			// particle radii
-// 	v = make([]vec, 0)			// particle velocities
-// 	a = make([]vec, 0)			// particle accelerations
-// 	a0  = make([]vec, 0)		// particle Prev accelerations
 	bodies = make([]*body, 0)
 	rij = new(struct{x, y, z float64})				// distance between two particles
 )
 
 func acceleration () () {
+	if Debug{defer debug.TimeMe(time.Now())}
 	// Reset acceleration
 	for i:=0; i<len(bodies); i++ {
 		bodies[i].ax = 0
 		bodies[i].ay = 0
 		bodies[i].az = 0
 	}
-	// Calculate ??
+
+	
 	for i:=0; i<len(bodies); i++ {
 		for j:=i+1; j<len(bodies); j++ {
 			rij.x = bodies[i].x - bodies[j].x
 			rij.y = bodies[i].y - bodies[j].y
 			rij.z = bodies[i].z - bodies[j].z
-			// ??
+			
 			RdotR := (rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z)
 			apre  := 1.0 / math.Sqrt(RdotR * RdotR * RdotR)
 		
@@ -47,6 +50,8 @@ func acceleration () () {
 
 // Update positions
 func updatePositions (dt float64) () {
+	if Debug{defer debug.TimeMe(time.Now())}
+	
 	for i:=0; i<len(bodies); i++ {
 		// Update the positions, based on the calculated accelerations and velocities
 		bodies[i].a0x = bodies[i].ax
@@ -62,6 +67,8 @@ func updatePositions (dt float64) () {
 
 // Update velocities based on previous and new accelerations
 func updateVelocities (dt float64) () {
+	if Debug{defer debug.TimeMe(time.Now())}
+	
 	//Update the velocities based on the previous and old accelerations
 	for i:=0; i<len(bodies); i++ {
 		bodies[i].vx += 0.5 * dt * (bodies[i].a0x + bodies[i].ax)
@@ -80,6 +87,8 @@ func updateVelocities (dt float64) () {
 // contains an expensive O(N^2) part which can be moved to the acceleration part
 // where this is already calculated
 func energies () (EKin, EPot float64) {
+	if Debug{defer debug.TimeMe(time.Now())}
+	
 	EKin = 0
 	
 	//Kinetic energy
@@ -103,6 +112,8 @@ func energies () (EKin, EPot float64) {
 
 
 func main () {
+	defer debug.TimeMe(time.Now())
+	
 	var (
 		t float64    = 0.0
 		tend float64 = 1.0
@@ -120,6 +131,8 @@ func main () {
 	
 	if inFile, err = os.Open(inFileName); err != nil {panic(err)}
 	defer inFile.Close()
+	if outFile, err = os.Create("babelDump.dat"); err != nil {panic(err)}
+	defer outFile.Close()
 	
 	for {
 		bd := new(body)
@@ -162,9 +175,11 @@ func main () {
 			
 			fmt.Printf("\rt= %f Etot=%f Etot0=%f Ek=%f Ep=%f dE=%f", t, totEnergy, totEnergy0, kinEnergy, potEnergy, dE)
 		}	
+		if Debug{os.Exit(1)}
 	}	
 	fmt.Println()
-	outFile, err = os.Create("babelDump.dat")
+	
+	// Write results
 	for i:=0; i<len(bodies); i++ {
 		fmt.Fprintf(outFile, "%d %f %f %f %f %f %f %f\n", 
 			minusOne, bodies[i].m, bodies[i].x, bodies[i].y, bodies[i].z, bodies[i].vx, bodies[i].vy, bodies[i].vx)
