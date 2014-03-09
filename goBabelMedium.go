@@ -9,7 +9,7 @@ import (
 	"github.com/brunetto/goutils/debug"
 )
 
-var Debug = true
+var Debug = false
 
 type body struct {
 	x, y, z, vx, vy, vz, ax, ay, az, a0x, a0y, a0z, m float64
@@ -17,14 +17,13 @@ type body struct {
 
 type Cluster struct {
 	N int
-	Bds []*body					// bodies slice
-// 	Rij []struct{x, y, z float64}	// distance between two particles
-	Rij *struct{x, y, z float64}
-	KinEnergy float64			// kinetic energy of the system
-	PotEnergy float64			// potential energy of the system
-	TotEnergy float64			// total energy of the system 
-	TotEnergy0 float64			// initial total energy of the system
-	DE float64					// relative energy error
+	Bds []*body						// bodies slice
+	Rij *struct{x, y, z float64}	// distance between two particles
+	KinEnergy float64				// kinetic energy of the system
+	PotEnergy float64				// potential energy of the system
+	TotEnergy float64				// total energy of the system 
+	TotEnergy0 float64				// initial total energy of the system
+	DE float64						// relative energy error
 }
 
 // Init create a new cluster and load particles from file
@@ -70,10 +69,7 @@ func (cl *Cluster) Acceleration () () {
 		cl.Bds[i].az = 0
 	}
 	
-	// Compute distances
-// 	cl.ComputeDistances()
-	
-// 	k := 0
+	// Compute distances	
 	for i:=0; i<cl.N; i++ {
 		for j:=i+1; j<cl.N; j++ {
 			
@@ -86,10 +82,9 @@ func (cl *Cluster) Acceleration () () {
 			apre  := 1.0 / math.Sqrt(RdotR * RdotR * RdotR)
 		
 			//Update acceleration
-			cl.Bds[i].ax -= cl.Bds[j].m * apre * cl.Rij/*[k]*/.x
-			cl.Bds[i].ay -= cl.Bds[j].m * apre * cl.Rij/*[k]*/.y
-			cl.Bds[i].az -= cl.Bds[j].m * apre * cl.Rij/*[k]*/.z
-// 			k++
+			cl.Bds[i].ax -= cl.Bds[j].m * apre * cl.Rij.x
+			cl.Bds[i].ay -= cl.Bds[j].m * apre * cl.Rij.y
+			cl.Bds[i].az -= cl.Bds[j].m * apre * cl.Rij.z
 		}
 	}
 }
@@ -150,27 +145,12 @@ func (cl *Cluster) Energies () () {
 			cl.Rij.y = cl.Bds[i].y - cl.Bds[j].y
 			cl.Rij.z = cl.Bds[i].z - cl.Bds[j].z
 			
-			cl.PotEnergy -= (cl.Bds[i].m * cl.Bds[j].m) / math.Sqrt((cl.Rij/*[k]*/.x * cl.Rij/*[k]*/.x) + 
-					(cl.Rij/*[k]*/.y * cl.Rij/*[k]*/.y) + (cl.Rij/*[k]*/.z * cl.Rij/*[k]*/.z))
+			cl.PotEnergy -= (cl.Bds[i].m * cl.Bds[j].m) / math.Sqrt((cl.Rij.x * cl.Rij.x) + 
+					(cl.Rij.y * cl.Rij.y) + (cl.Rij.z * cl.Rij.z))
 			k++
 		}
 	}
 }
-
-// func (cl *Cluster) ComputeDistances () () {
-// 	if Debug{defer debug.TimeMe(time.Now())}
-// 	
-// 	k := 0
-// 	for i:=0; i<cl.N; i++ {
-// 		for j:=i+1; j<cl.N; j++ {
-// 			//Distance between the two stars
-// 			cl.Rij[k].x = cl.Bds[i].x - cl.Bds[j].x
-// 			cl.Rij[k].y = cl.Bds[i].y - cl.Bds[j].y
-// 			cl.Rij[k].z = cl.Bds[i].z - cl.Bds[j].z
-// 			k++
-// 		}
-// 	}
-// }
 
 
 func main () {
@@ -193,7 +173,6 @@ func main () {
 	cl.Init(inFileName)
 	
 	// Compute initial energy of the system
-// 	cl.ComputeDistances()
 	cl.Energies()
 	cl.TotEnergy0 = cl.KinEnergy + cl.PotEnergy
 	
@@ -231,7 +210,7 @@ func main () {
 	
 	// Write results
 	
-	if outFile, err = os.Create("babelDump.dat"); err != nil {panic(err)}
+	if outFile, err = os.Create("babelDumpMedium.dat"); err != nil {panic(err)}
 	defer outFile.Close()
 	
 	for i:=0; i<cl.N; i++ {

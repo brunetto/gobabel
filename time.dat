@@ -1,0 +1,30 @@
+brunetto@uno:~/Dropbox/DCode/go/src/github.com/brunetto/gobabel$ time ./goBabelBase inputFilesSmall/input1k 
+Read  1024 lines
+Starting: Etot0=167.894825 Ek0=168.394825 Ep0=-0.500000
+t= 1.000000 Etot=208.569677 Etot0=167.894825 Ek=209.038386 Ep=-0.468709 dE=0.2422644
+2014/03/09 19:55:54 Wall time for  main.main :  13.777243813s
+
+real    0m13.780s
+user    0m13.619s
+sys     0m0.180s
+
+brunetto@uno:~/Dropbox/DCode/go/src/github.com/brunetto/gobabel$ time ./goBabelMedium inputFilesSmall/input1k 
+Read  1024 lines
+Starting: Etot0=167.894825 Ek0=168.394825 Ep0=-0.500000
+t= 1.000000 Etot=208.569677 Etot0=167.894825 Ek=209.038386 Ep=-0.468709 dE=0.2422644
+2014/03/09 19:56:23 Wall time for  main.main :  23.298633369s
+
+real    0m23.301s
+user    0m23.279s
+sys     0m0.064s
+
+brunetto@uno:~/Dropbox/DCode/go/src/github.com/brunetto/gobabel$ time ./goBabelHigh inputFilesSmall/input1k 
+Read  1024 lines
+Starting: Etot0=167.894825 Ek0=168.394825 Ep0=-0.500000
+t= 1.000000 Etot=208.569677 Etot0=167.894825 Ek=209.038386 Ep=-0.468709 dE=0.2422644
+2014/03/09 19:56:58 Wall time for  main.main :  28.217138973s
+
+real    0m28.220s
+user    0m28.115s
+sys     0m0.108s
+brunetto@uno:~/Dropbox/DCode/go/src/github.com/brunetto/gobabel$ 
