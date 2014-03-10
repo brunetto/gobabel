@@ -39,7 +39,7 @@ func (cl *Cluster) Init(inFileName string) {
 	)
 
 	// Create new cluster
-	cl.Bds = make([]*body, 0)
+	cl.Bds = []*body{}
 
 	// Load particles
 	if inFile, err = os.Open(inFileName); err != nil {
