@@ -48,7 +48,7 @@ func (cl *Cluster) Init(inFileName string) {
 	defer inFile.Close()
 
 	for {
-		bd := new(body)
+		bd := &body{}
 		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n",
 			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vx)); err != nil {
 			break
