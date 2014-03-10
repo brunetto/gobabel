@@ -195,7 +195,7 @@ func main() {
 
 	inFileName = os.Args[1]
 
-	cl := new(Cluster)
+	cl := &Cluster{}
 
 	cl.Init(inFileName)
 
