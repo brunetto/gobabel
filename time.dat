@@ -10,13 +10,14 @@ sys     0m0.080s
 
 ziosi@spritz:~/Dropbox/DCode/go/src/github.com/brunetto/goBabel$ time ./goBabelBase inputFilesSmall/input1k 
 Read  1024 lines
-Starting: Etot0=-0.421290 Ek0=0.078710 Ep0=-0.500000
-t= 1.000000 Etot=-0.392827 Etot0=-0.421290 Ek=0.075882 Ep=-0.468709 dE=-0.067563
-2014/03/11 11:13:10 Wall time for  main.main :  16.160050624s
+Starting: Etot0=-0.338323 Ek0=0.161677 Ep0=-0.500000
+t= 1.000000 Etot=-0.296527 Etot0=-0.338323 Ek=0.172182 Ep=-0.468709 dE=-0.123540
+2014/03/11 11:21:29 Wall time for  main.main :  16.183215412s
 
-real    0m16.163s
-user    0m16.105s
-sys     0m0.076s
+real    0m16.186s
+user    0m16.109s
+sys     0m0.100s
+
 
 ziosi@spritz:~/Dropbox/DCode/go/src/github.com/brunetto/goBabel$ time ./goBabelMedium inputFilesSmall/input1k 
 Read  1024 lines

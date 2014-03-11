@@ -98,7 +98,7 @@ func energies() (EKin, EPot float64) {
 
 	//Kinetic energy
 	for i := 0; i < len(bodies); i++ {
-		EKin += 0.5 * bodies[i].m * bodies[i].vx * (bodies[i].vx + bodies[i].vy*bodies[i].vy + bodies[i].vz*bodies[i].vz)
+		EKin += 0.5 * bodies[i].m * (bodies[i].vx*bodies[i].vx + bodies[i].vy*bodies[i].vy + bodies[i].vz*bodies[i].vz)
 	}
 
 	//Potential energy
@@ -141,7 +141,7 @@ func main() {
 	for {
 		bd := new(body)
 		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n",
-			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vx)); err != nil {
+			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vz)); err != nil {
 			break
 		}
 		bodies = append(bodies, bd)
@@ -195,6 +195,6 @@ func main() {
 
 	for i := 0; i < len(bodies); i++ {
 		fmt.Fprintf(outFile, "%d %f %f %f %f %f %f %f\n",
-			minusOne, bodies[i].m, bodies[i].x, bodies[i].y, bodies[i].z, bodies[i].vx, bodies[i].vy, bodies[i].vx)
+			minusOne, bodies[i].m, bodies[i].x, bodies[i].y, bodies[i].z, bodies[i].vx, bodies[i].vy, bodies[i].vz)
 	}
 }

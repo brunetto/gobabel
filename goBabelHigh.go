@@ -50,7 +50,7 @@ func (cl *Cluster) Init(inFileName string) {
 	for {
 		bd := &body{}
 		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n",
-			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vx)); err != nil {
+			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vz)); err != nil {
 			break
 		}
 		cl.Bds = append(cl.Bds, bd)
@@ -249,6 +249,6 @@ func main() {
 
 	for i := 0; i < cl.N; i++ {
 		fmt.Fprintf(outFile, "%d %f %f %f %f %f %f %f\n",
-			-1, cl.Bds[i].m, cl.Bds[i].x, cl.Bds[i].y, cl.Bds[i].z, cl.Bds[i].vx, cl.Bds[i].vy, cl.Bds[i].vx)
+			-1, cl.Bds[i].m, cl.Bds[i].x, cl.Bds[i].y, cl.Bds[i].z, cl.Bds[i].vx, cl.Bds[i].vy, cl.Bds[i].vz)
 	}
 }

@@ -142,7 +142,7 @@ func main() {
 	for {
 
 		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n",
-			&minusOne, &(tempm), &(x), &(y), &(z), &(vx), &(vy), &(vx)); err != nil {
+			&minusOne, &(tempm), &(x), &(y), &(z), &(vx), &(vy), &(vz)); err != nil {
 			break
 		}
 
