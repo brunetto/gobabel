@@ -144,7 +144,7 @@ func (cl *Cluster) Energies() {
 
 	//Kinetic energy
 	for i := 0; i < cl.N; i++ {
-		cl.KinEnergy += 0.5*cl.Bds[i].m*cl.Bds[i].vx*cl.Bds[i].vx + cl.Bds[i].vy*cl.Bds[i].vy + cl.Bds[i].vz*cl.Bds[i].vz
+		cl.KinEnergy += 0.5 * cl.Bds[i].m * (cl.Bds[i].vx*cl.Bds[i].vx + cl.Bds[i].vy*cl.Bds[i].vy + cl.Bds[i].vz*cl.Bds[i].vz)
 	}
 
 	//Potential energy

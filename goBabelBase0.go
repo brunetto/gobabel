@@ -11,13 +11,14 @@ import (
 
 var Debug = false
 
-type body struct {
-	x, y, z, vx, vy, vz, ax, ay, az, a0x, a0y, a0z, m float64
-}
-
 var (
-	bodies = make([]*body, 0)
-	rij    = new(struct{ x, y, z float64 }) // distance between two particles
+	n   int
+	m   = []float64{} //Masses array
+	rij = [3]float64{}
+	r   = [][3]float64{} //Positions
+	v   = [][3]float64{} //Velocities
+	a   [][3]float64     //Accelerations
+	a0  [][3]float64     //Prev accelerations
 )
 
 func acceleration() {
@@ -25,25 +26,25 @@ func acceleration() {
 		defer debug.TimeMe(time.Now())
 	}
 	// Reset acceleration
-	for i := 0; i < len(bodies); i++ {
-		bodies[i].ax = 0
-		bodies[i].ay = 0
-		bodies[i].az = 0
+	for i := 0; i < n; i++ {
+		a[i][0] = 0
+		a[i][1] = 0
+		a[i][2] = 0
 	}
 
-	for i := 0; i < len(bodies); i++ {
-		for j := i + 1; j < len(bodies); j++ {
-			rij.x = bodies[i].x - bodies[j].x
-			rij.y = bodies[i].y - bodies[j].y
-			rij.z = bodies[i].z - bodies[j].z
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			rij[0] = r[i][0] - r[j][0]
+			rij[1] = r[i][1] - r[j][1]
+			rij[2] = r[i][2] - r[j][2]
 
-			RdotR := (rij.x * rij.x) + (rij.y * rij.y) + (rij.z * rij.z)
+			RdotR := (rij[0] * rij[0]) + (rij[1] * rij[1]) + (rij[2] * rij[2])
 			apre := 1.0 / math.Sqrt(RdotR*RdotR*RdotR)
 
 			//Update acceleration
-			bodies[i].ax -= bodies[j].m * apre * rij.x
-			bodies[i].ay -= bodies[j].m * apre * rij.y
-			bodies[i].az -= bodies[j].m * apre * rij.z
+			a[i][0] -= m[j] * apre * rij[0]
+			a[i][1] -= m[j] * apre * rij[1]
+			a[i][2] -= m[j] * apre * rij[2]
 		}
 	}
 }
@@ -54,15 +55,15 @@ func updatePositions(dt float64) {
 		defer debug.TimeMe(time.Now())
 	}
 
-	for i := 0; i < len(bodies); i++ {
+	for i := 0; i < n; i++ {
 		// Update the positions, based on the calculated accelerations and velocities
-		bodies[i].a0x = bodies[i].ax
-		bodies[i].a0y = bodies[i].ay
-		bodies[i].a0z = bodies[i].az
+		a0[i][0] = a[i][0]
+		a0[i][1] = a[i][1]
+		a0[i][2] = a[i][2]
 		// For each axis (x/y/z)
-		bodies[i].x += dt*bodies[i].vx + 0.5*dt*dt*bodies[i].a0x
-		bodies[i].y += dt*bodies[i].vy + 0.5*dt*dt*bodies[i].a0y
-		bodies[i].z += dt*bodies[i].vz + 0.5*dt*dt*bodies[i].a0z
+		r[i][0] += dt*v[i][0] + 0.5*dt*dt*a0[i][0]
+		r[i][1] += dt*v[i][1] + 0.5*dt*dt*a0[i][1]
+		r[i][2] += dt*v[i][2] + 0.5*dt*dt*a0[i][2]
 	}
 
 }
@@ -74,15 +75,14 @@ func updateVelocities(dt float64) {
 	}
 
 	//Update the velocities based on the previous and old accelerations
-	for i := 0; i < len(bodies); i++ {
-		bodies[i].vx += 0.5 * dt * (bodies[i].a0x + bodies[i].ax)
-		bodies[i].vy += 0.5 * dt * (bodies[i].a0y + bodies[i].ay)
-		bodies[i].vz += 0.5 * dt * (bodies[i].a0z + bodies[i].az)
+	for i := 0; i < n; i++ {
+		v[i][0] += 0.5 * dt * (a0[i][0] + a[i][0])
+		v[i][1] += 0.5 * dt * (a0[i][1] + a[i][1])
+		v[i][2] += 0.5 * dt * (a0[i][2] + a[i][2])
 
-		// Update accelerations
-		bodies[i].a0x = bodies[i].ax
-		bodies[i].a0y = bodies[i].ay
-		bodies[i].a0z = bodies[i].az
+		a0[i][0] = a[i][0]
+		a0[i][1] = a[i][1]
+		a0[i][2] = a[i][2]
 	}
 }
 
@@ -97,19 +97,19 @@ func energies() (EKin, EPot float64) {
 	EKin = 0
 
 	//Kinetic energy
-	for i := 0; i < len(bodies); i++ {
-		EKin += 0.5 * bodies[i].m * bodies[i].vx * (bodies[i].vx + bodies[i].vy*bodies[i].vy + bodies[i].vz*bodies[i].vz)
+	for i := 0; i < n; i++ {
+		EKin += 0.5 * m[i] * (v[i][0]*v[i][0] + v[i][1]*v[i][1] + v[i][2]*v[i][2])
 	}
 
 	//Potential energy
-	for i := 0; i < len(bodies); i++ {
-		for j := i + 1; j < len(bodies); j++ {
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
 			//Distance between the two stars
-			rij.x = bodies[i].x - bodies[j].x
-			rij.y = bodies[i].y - bodies[j].y
-			rij.z = bodies[i].z - bodies[j].z
+			rij[0] = r[i][0] - r[j][0]
+			rij[1] = r[i][1] - r[j][1]
+			rij[2] = r[i][2] - r[j][2]
 
-			EPot -= (bodies[i].m * bodies[j].m) / math.Sqrt((rij.x*rij.x)+(rij.y*rij.y)+(rij.z*rij.z))
+			EPot -= ((m[i] * m[i]) / math.Sqrt((rij[0]*rij[0])+(rij[1]*rij[1])+(rij[2]*rij[2])))
 		}
 	}
 	return EKin, EPot
@@ -129,6 +129,7 @@ func main() {
 		outFile                                         *os.File
 		err                                             error
 		minusOne                                        int
+		tempm, x, y, z, vx, vy, vz                      float64
 	)
 
 	inFileName = os.Args[1]
@@ -139,14 +140,21 @@ func main() {
 	defer inFile.Close()
 
 	for {
-		bd := new(body)
+
 		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n",
-			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vx)); err != nil {
+			&minusOne, &(tempm), &(x), &(y), &(z), &(vx), &(vy), &(vx)); err != nil {
 			break
 		}
-		bodies = append(bodies, bd)
+
+		m = append(m, tempm)
+		r = append(r, [3]float64{x, y, z})
+		v = append(v, [3]float64{vx, vy, vz})
 	}
-	fmt.Println("Read ", len(bodies), "lines")
+	n = len(m)
+	fmt.Println("Read ", n, "lines")
+	// Init accelerations
+	a = make([][3]float64, n)
+	a0 = make([][3]float64, n)
 	// Compute initial energy of the system
 	kinEnergy, potEnergy = energies()
 	totEnergy0 = kinEnergy + potEnergy
@@ -188,13 +196,13 @@ func main() {
 	fmt.Println()
 
 	// Write results
-	if outFile, err = os.Create("babelDumpBase.dat"); err != nil {
+	if outFile, err = os.Create("babelDumpBase0.dat"); err != nil {
 		panic(err)
 	}
 	defer outFile.Close()
 
-	for i := 0; i < len(bodies); i++ {
+	for i := 0; i < n; i++ {
 		fmt.Fprintf(outFile, "%d %f %f %f %f %f %f %f\n",
-			minusOne, bodies[i].m, bodies[i].x, bodies[i].y, bodies[i].z, bodies[i].vx, bodies[i].vy, bodies[i].vx)
+			minusOne, m[i], r[i][0], r[i][1], r[i][2], v[i][0], v[i][1], v[i][2])
 	}
 }
