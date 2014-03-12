@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/davecheney/profile"
 	"github.com/brunetto/goutils/debug"
 )
 
@@ -17,7 +18,7 @@ type body struct {
 
 type Cluster struct {
 	N          int
-	Bds        []*body                     // bodies slice
+	Bds        []body                     // bodies slice
 	Rij        []struct{ x, y, z float64 } // distance between two particles
 	KinEnergy  float64                     // kinetic energy of the system
 	PotEnergy  float64                     // potential energy of the system
@@ -39,7 +40,7 @@ func (cl *Cluster) Init(inFileName string) {
 	)
 
 	// Create new cluster
-	cl.Bds = []*body{} // the same as make([]*body, 0)
+	cl.Bds = []body{} // the same as make([]*body, 0)
 
 	// Load particles
 	if inFile, err = os.Open(inFileName); err != nil {
@@ -48,7 +49,7 @@ func (cl *Cluster) Init(inFileName string) {
 	defer inFile.Close()
 
 	for {
-		bd := &body{}
+		bd := body{}
 		if _, err := fmt.Fscanf(inFile, "%d %f %f %f %f %f %f %f\n",
 			&minusOne, &(bd.m), &(bd.x), &(bd.y), &(bd.z), &(bd.vx), &(bd.vy), &(bd.vz)); err != nil {
 			break
@@ -151,13 +152,8 @@ func (cl *Cluster) Energies() {
 	k := 0
 	for i := 0; i < cl.N; i++ {
 		for j := i + 1; j < cl.N; j++ {
-
-			cl.Rij[k].x = cl.Bds[i].x - cl.Bds[j].x
-			cl.Rij[k].y = cl.Bds[i].y - cl.Bds[j].y
-			cl.Rij[k].z = cl.Bds[i].z - cl.Bds[j].z
-
-			cl.PotEnergy -= (cl.Bds[i].m * cl.Bds[j].m) / math.Sqrt((cl.Rij[k].x*cl.Rij[k].x)+
-				(cl.Rij[k].y*cl.Rij[k].y)+(cl.Rij[k].z*cl.Rij[k].z))
+			cl.PotEnergy -= ((cl.Bds[i].m * cl.Bds[j].m) / math.Sqrt((cl.Rij[k].x*cl.Rij[k].x)+
+				(cl.Rij[k].y*cl.Rij[k].y)+(cl.Rij[k].z*cl.Rij[k].z)))
 			k++
 		}
 	}
@@ -181,6 +177,7 @@ func (cl *Cluster) ComputeDistances() {
 }
 
 func main() {
+	defer profile.Start(profile.CPUProfile).Stop()
 	defer debug.TimeMe(time.Now())
 
 	var (

@@ -15,12 +15,26 @@ var Debug = false
 var (
 	n   int
 	m   = []float64{} //Masses array
-	rij = [3]float64{}
+	rij [][3]float64
+	RdotR = []float64{}
 	r   = [][3]float64{} //Positions
 	v   = [][3]float64{} //Velocities
 	a   [][3]float64     //Accelerations
 	a0  [][3]float64     //Prev accelerations
 )
+
+func computeDistances() {
+	k :=0
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			rij[k][0] = r[i][0] - r[j][0]
+			rij[k][1] = r[i][1] - r[j][1]
+			rij[k][2] = r[i][2] - r[j][2]
+			RdotR[k] = (rij[k][0] * rij[k][0]) + (rij[k][1] * rij[k][1]) + (rij[k][2] * rij[k][2])
+			k++
+		}	
+	}
+}
 
 func acceleration() {
 	if Debug {
@@ -33,19 +47,17 @@ func acceleration() {
 		a[i][2] = 0
 	}
 
+	computeDistances()
+	
+	k := 0
 	for i := 0; i < n; i++ {
 		for j := i + 1; j < n; j++ {
-			rij[0] = r[i][0] - r[j][0]
-			rij[1] = r[i][1] - r[j][1]
-			rij[2] = r[i][2] - r[j][2]
-
-			RdotR := (rij[0] * rij[0]) + (rij[1] * rij[1]) + (rij[2] * rij[2])
-			apre := 1.0 / math.Sqrt(RdotR*RdotR*RdotR)
+			apre := 1.0 / math.Sqrt(RdotR[k]*RdotR[k]*RdotR[k])
 
 			//Update acceleration
-			a[i][0] -= m[j] * apre * rij[0]
-			a[i][1] -= m[j] * apre * rij[1]
-			a[i][2] -= m[j] * apre * rij[2]
+			a[i][0] -= m[j] * apre * rij[k][0]
+			a[i][1] -= m[j] * apre * rij[k][1]
+			a[i][2] -= m[j] * apre * rij[k][2]
 		}
 	}
 }
@@ -103,14 +115,11 @@ func energies() (EKin, EPot float64) {
 	}
 
 	//Potential energy
+	k := 0
 	for i := 0; i < n; i++ {
 		for j := i + 1; j < n; j++ {
-			//Distance between the two stars
-			rij[0] = r[i][0] - r[j][0]
-			rij[1] = r[i][1] - r[j][1]
-			rij[2] = r[i][2] - r[j][2]
-
-			EPot -= ((m[i] * m[i]) / math.Sqrt((rij[0]*rij[0])+(rij[1]*rij[1])+(rij[2]*rij[2])))
+			EPot -= ((m[i] * m[i]) / math.Sqrt(RdotR[k]))
+			k++
 		}
 	}
 	return EKin, EPot
@@ -157,6 +166,10 @@ func main() {
 	// Init accelerations
 	a = make([][3]float64, n)
 	a0 = make([][3]float64, n)
+	rij = make([][3]float64, int(n*(n-1)/2))
+	RdotR = make([]float64, int(n*(n-1)/2))
+	
+	computeDistances()
 	// Compute initial energy of the system
 	kinEnergy, potEnergy = energies()
 	totEnergy0 = kinEnergy + potEnergy
@@ -198,7 +211,7 @@ func main() {
 	fmt.Println()
 
 	// Write results
-	if outFile, err = os.Create("babelDumpBase0.dat"); err != nil {
+	if outFile, err = os.Create("babelDumpBase0High.dat"); err != nil {
 		panic(err)
 	}
 	defer outFile.Close()
