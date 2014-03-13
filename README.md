@@ -11,7 +11,7 @@ Input files are in the inputSmallFiles and inputBigFiles folders.
 Timing.dat contains the timing I obtained on a Intel(R) Xeon(R) CPU E5-2620 @ 2.00GHz.
 
 goBabelS
-========
+--------
 
 Basic version copied from the C version
 that can be found at http://www.nbabel.org/codes/13.
@@ -41,7 +41,7 @@ sys     0m5.532s
 ````
 
 goBabelSF
-=========
+---------
 
 Here distances are computed in a function and stored in a slice.
 
@@ -70,7 +70,7 @@ sys     0m9.013s
 ````
 
 goBabelSOS
-==========
+----------
 
 Here particles are represented by a struct.
 No function for compute distances.
@@ -100,7 +100,7 @@ sys     0m6.864s
 ````
 
 goBabelSOSOSF
-=============
+-------------
 
 Here there's a struct representing the cluster. It contains the slices of body
 structs representing the particles.
@@ -131,7 +131,7 @@ sys     0m8.281s
 ````
 
 MichaelJones
-============
+------------
 
 Provided by Michael Jones on the Golang-nuts mailing list
 https://groups.google.com/d/msg/golang-nuts/lhAD3LnfO88/jg6e5OZfSYYJ
