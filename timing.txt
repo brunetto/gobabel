@@ -1,4 +1,4 @@
-$ time ./goBabelS inputFilesSmall/input1k 
+$ time ./goBabelS ../inputFilesSmall/input1k 
 2014/03/13 11:06:08 profile: cpu profiling enabled, /tmp/profile201142823/cpu.pprof
 Read  1024 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -9,7 +9,7 @@ real    0m16.747s
 user    0m16.669s
 sys     0m0.064s
 
-$ time ./goBabelS inputFilesBig/input16k 
+$ time ./goBabelS ../inputFilesBig/input16k 
 2014/03/13 11:13:06 profile: cpu profiling enabled, /tmp/profile769946569/cpu.pprof
 Read  16384 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -22,7 +22,7 @@ sys     0m5.532s
 
 ---------------------------------------------------------------
 
-$ time ./goBabelSF inputFilesSmall/input1k
+$ time ./goBabelSF ../inputFilesSmall/input1k
 2014/03/13 11:11:08 profile: cpu profiling enabled, /tmp/profile919886927/cpu.pprof
 Read  1024 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -33,7 +33,7 @@ real    0m20.273s
 user    0m20.193s
 sys     0m0.076s
 
-$ time ./goBabelSF inputFilesBig/input16k 
+$ time ./goBabelSF ../inputFilesBig/input16k 
 2014/03/13 11:13:17 profile: cpu profiling enabled, /tmp/profile243239193/cpu.pprof
 Read  16384 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -47,7 +47,7 @@ $
 
 ---------------------------------------------------------------
 
-$ time ./goBabelSOS inputFilesSmall/input1k
+$ time ./goBabelSOS ../inputFilesSmall/input1k
 2014/03/13 11:11:11 profile: cpu profiling enabled, /tmp/profile034141521/cpu.pprof
 Read  1024 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -58,7 +58,7 @@ real    0m16.778s
 user    0m16.717s
 sys     0m0.064s
 
-$ time ./goBabelSOS inputFilesBig/input16k 
+$ time ./goBabelSOS ../inputFilesBig/input16k 
 2014/03/13 11:13:27 profile: cpu profiling enabled, /tmp/profile507866436/cpu.pprof
 Read  16384 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -71,7 +71,7 @@ sys     0m6.864s
 
 ---------------------------------------------------------------
 
-$ time ./goBabelSOSOSF inputFilesSmall/input1k
+$ time ./goBabelSOSOSF ../inputFilesSmall/input1k
 2014/03/13 11:11:14 profile: cpu profiling enabled, /tmp/profile202456972/cpu.pprof
 Read  1024 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -82,7 +82,7 @@ real    0m24.987s
 user    0m24.894s
 sys     0m0.092s
 
-$ time ./goBabelSOSOSF inputFilesBig/input16k 
+$ time ./goBabelSOSOSF ../inputFilesBig/input16k 
 2014/03/13 11:13:36 profile: cpu profiling enabled, /tmp/profile771707555/cpu.pprof
 Read  16384 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -95,7 +95,7 @@ sys     0m8.281s
 
 ---------------------------------------------------------------
 
-$ time ./MichaelJones inputFilesSmall/input1k 
+$ time ./MichaelJones ../inputFilesSmall/input1k 
 2014/03/13 14:15:30 profile: cpu profiling enabled, /tmp/profile823321229/cpu.pprof
 Read  1024 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
@@ -105,7 +105,7 @@ real    0m11.319s
 user    0m11.241s
 sys     0m0.088s
 
-$ time ./MichaelJones inputFilesBig/input16k 
+$ time ./MichaelJones ../inputFilesBig/input16k 
 2014/03/13 14:16:25 profile: cpu profiling enabled, /tmp/profile043838095/cpu.pprof
 Read  16384 lines
 Starting: Etot0=-0.250000 Ek0=0.250000 Ep0=-0.500000
