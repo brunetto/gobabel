@@ -1,0 +1,581 @@
+events: Hits
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).ComputeDistances
+42 55
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).ComputeDistances
+44 145
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).ComputeDistances
+45 149
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).ComputeDistances
+46 179
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).ComputeDistances
+49 444
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).ComputeDistances
+50 3
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Init
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.Fscanf
+calls=2 144
+79 2
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=179 46
+106 179
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=148 45
+106 148
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=3 50
+106 3
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=55 42
+106 55
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=144 44
+106 144
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=444 49
+106 444
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+110 28
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+cfn=math.Sqrt
+calls=15 11
+111 15
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+cfn=math.Sqrt
+calls=1 9
+111 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+cfl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+cfn=math.Sqrt
+calls=102 10
+111 102
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+111 228
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+114 663
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+115 193
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+116 162
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Acceleration
+117 22
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).UpdatePositions
+134 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).UpdatePositions
+135 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Energies
+cfl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+cfn=math.Sqrt
+calls=13 10
+177 13
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Energies
+cfl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+cfn=math.Sqrt
+calls=3 11
+177 3
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Energies
+cfl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+cfn=math.Sqrt
+calls=1 9
+177 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Energies
+177 77
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.(*Cluster).Energies
+178 3
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Init
+calls=2 79
+201 2
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=1 45
+204 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).ComputeDistances
+calls=1 44
+204 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=2 106
+211 2
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=1 116
+211 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).UpdatePositions
+calls=1 134
+219 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).UpdatePositions
+calls=1 135
+219 1
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=161 116
+222 161
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=971 106
+222 971
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=663 114
+222 663
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=193 115
+222 193
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=28 110
+222 28
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=346 111
+222 346
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Acceleration
+calls=22 117
+222 22
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Energies
+calls=94 177
+232 94
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.(*Cluster).Energies
+calls=3 178
+232 3
+
+fl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+fn=main.main
+cfl=/usr/local/go/src/pkg/fmt/print.go
+cfn=fmt.Fprintf
+calls=1 220
+253 1
+
+fl=/usr/local/go/src/pkg/fmt/format.go
+fn=fmt.(*fmt).formatFloat
+cfl=/usr/local/go/src/pkg/strconv/ftoa.go
+cfn=strconv.AppendFloat
+calls=1 51
+357 1
+
+fl=/usr/local/go/src/pkg/fmt/format.go
+fn=fmt.(*fmt).fmt_f64
+cfl=/usr/local/go/src/pkg/fmt/format.go
+cfn=fmt.(*fmt).formatFloat
+calls=1 357
+392 1
+
+fl=/usr/local/go/src/pkg/fmt/print.go
+fn=fmt.Fprintf
+cfl=/usr/local/go/src/pkg/fmt/print.go
+cfn=fmt.(*pp).doPrintf
+calls=1 1182
+220 1
+
+fl=/usr/local/go/src/pkg/fmt/print.go
+fn=fmt.(*pp).fmtFloat64
+cfl=/usr/local/go/src/pkg/fmt/format.go
+cfn=fmt.(*fmt).fmt_f64
+calls=1 392
+502 1
+
+fl=/usr/local/go/src/pkg/fmt/print.go
+fn=fmt.(*pp).printArg
+cfl=/usr/local/go/src/pkg/fmt/print.go
+cfn=fmt.(*pp).fmtFloat64
+calls=1 502
+775 1
+
+fl=/usr/local/go/src/pkg/fmt/print.go
+fn=fmt.(*pp).doPrintf
+cfl=/usr/local/go/src/pkg/fmt/print.go
+cfn=fmt.(*pp).printArg
+calls=1 775
+1182 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.Fscanf
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).doScanf
+calls=2 1158
+144 2
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).ReadRune
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*readRune).ReadRune
+calls=1 357
+200 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).getRune
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).ReadRune
+calls=1 200
+220 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*readRune).readByte
+cfl=/usr/local/go/src/pkg/io/io.go
+cfn=io.ReadFull
+calls=1 306
+341 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*readRune).ReadRune
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*readRune).readByte
+calls=1 341
+357 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.indexRune
+488 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).consume
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).getRune
+calls=1 220
+497 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).consume
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.indexRune
+calls=1 488
+501 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).accept
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).consume
+calls=1 497
+533 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).accept
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).consume
+calls=1 501
+533 1
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).floatToken
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).accept
+calls=2 533
+731 2
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).scanOne
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).floatToken
+calls=2 731
+983 2
+
+fl=/usr/local/go/src/pkg/fmt/scan.go
+fn=fmt.(*ss).doScanf
+cfl=/usr/local/go/src/pkg/fmt/scan.go
+cfn=fmt.(*ss).scanOne
+calls=2 983
+1158 2
+
+fl=/usr/local/go/src/pkg/io/io.go
+fn=io.ReadAtLeast
+cfl=/usr/local/go/src/pkg/os/file.go
+cfn=os.(*File).Read
+calls=1 95
+288 1
+
+fl=/usr/local/go/src/pkg/io/io.go
+fn=io.ReadFull
+cfl=/usr/local/go/src/pkg/io/io.go
+cfn=io.ReadAtLeast
+calls=1 288
+306 1
+
+fl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+fn=math.Sqrt
+9 2
+
+fl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+fn=math.Sqrt
+10 115
+
+fl=/usr/local/go/src/pkg/math/sqrt_amd64.s
+fn=math.Sqrt
+11 18
+
+fl=/usr/local/go/src/pkg/os/file.go
+fn=os.(*File).Read
+cfl=/usr/local/go/src/pkg/os/file_unix.go
+cfn=os.(*File).read
+calls=1 180
+95 1
+
+fl=/usr/local/go/src/pkg/os/file_unix.go
+fn=os.(*File).read
+cfl=/usr/local/go/src/pkg/syscall/syscall_unix.go
+cfn=syscall.Read
+calls=1 135
+180 1
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=2 201
+220 2
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=1 253
+220 1
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=2 219
+220 2
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=97 232
+220 97
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=2 204
+220 2
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=2384 222
+220 2384
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.main
+cfl=/home/ziosi/Dropbox/DCode/go/src/github.com/brunetto/goBabel/goBabelSOSOSF.go
+cfn=main.main
+calls=3 211
+220 3
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=runtime.entersyscall
+1449 1
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=System
+cfl=/usr/local/go/src/pkg/syscall/asm_linux_amd64.s
+cfn=syscall.Syscall
+calls=7 26
+2038 7
+
+fl=/usr/local/go/src/pkg/runtime/proc.c
+fn=System
+cfl=/usr/local/go/src/pkg/runtime/sys_linux_amd64.s
+cfn=runtime.usleep
+calls=2 77
+2038 2
+
+fl=/usr/local/go/src/pkg/runtime/sys_linux_amd64.s
+fn=runtime.usleep
+77 2
+
+fl=/usr/local/go/src/pkg/strconv/decimal.go
+fn=strconv.rightShift
+149 1
+
+fl=/usr/local/go/src/pkg/strconv/decimal.go
+fn=strconv.(*decimal).Shift
+cfl=/usr/local/go/src/pkg/strconv/decimal.go
+cfn=strconv.rightShift
+calls=1 149
+290 1
+
+fl=/usr/local/go/src/pkg/strconv/ftoa.go
+fn=strconv.AppendFloat
+cfl=/usr/local/go/src/pkg/strconv/ftoa.go
+cfn=strconv.genericFtoa
+calls=1 149
+51 1
+
+fl=/usr/local/go/src/pkg/strconv/ftoa.go
+fn=strconv.genericFtoa
+cfl=/usr/local/go/src/pkg/strconv/ftoa.go
+cfn=strconv.bigFtoa
+calls=1 158
+149 1
+
+fl=/usr/local/go/src/pkg/strconv/ftoa.go
+fn=strconv.bigFtoa
+cfl=/usr/local/go/src/pkg/strconv/decimal.go
+cfn=strconv.(*decimal).Shift
+calls=1 290
+158 1
+
+fl=/usr/local/go/src/pkg/syscall/asm_linux_amd64.s
+fn=syscall.Syscall
+cfl=/usr/local/go/src/pkg/runtime/proc.c
+cfn=runtime.entersyscall
+calls=1 1449
+17 1
+
+fl=/usr/local/go/src/pkg/syscall/asm_linux_amd64.s
+fn=syscall.Syscall
+26 7
+
+fl=/usr/local/go/src/pkg/syscall/syscall_unix.go
+fn=syscall.Read
+cfl=/usr/local/go/src/pkg/syscall/zsyscall_linux_amd64.go
+cfn=syscall.read
+calls=1 838
+135 1
+
+fl=/usr/local/go/src/pkg/syscall/zsyscall_linux_amd64.go
+fn=syscall.read
+cfl=/usr/local/go/src/pkg/syscall/asm_linux_amd64.s
+cfn=syscall.Syscall
+calls=1 17
+838 1
+
+fl=??
+fn=runtime.gosched0
+cfl=/usr/local/go/src/pkg/runtime/proc.c
+cfn=runtime.main
+calls=2491 220
+0 2491
+
