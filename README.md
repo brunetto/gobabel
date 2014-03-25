@@ -15,10 +15,13 @@ Info
 **Time step:** constant and shared 1e-3 N-body unit    
 **Performance:**  
 
-**_input_**    **_time [s]_**    
-1k       12.91    
-2k       51.56    
-4k       3m26.36s    
+````bash
+#input    time[s]       dE/E
+1k       12.91         -0.238590    
+2k       51.56         -0.242771    
+4k       3m26.36s      -0.227638    
+8k       13m45.5s      -0.233563    
+````
 
 NOTE:     
 This go version is translated from the C version found here [2].    
