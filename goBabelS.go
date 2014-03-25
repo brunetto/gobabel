@@ -149,7 +149,7 @@ func main() {
 	acceleration()
  
 	//Start the main loop
-	for k := 0; ; k++ {
+	for k := 1; ; k++ {
 		if t > tend {
 			break
 		}
@@ -167,7 +167,7 @@ func main() {
 			totEnergy = kinEnergy + potEnergy
 			dE = (totEnergy - totEnergy0) / totEnergy0
 
-			fmt.Printf("\rt= %f Etot=%f Etot0=%f Ek=%f Ep=%f dE=%f", t, totEnergy, totEnergy0, kinEnergy, potEnergy, dE)
+			fmt.Printf("\rt= %f Etot=%f Etot0=%f Ek=%f Ep=%f dE/E=%f", t, totEnergy, totEnergy0, kinEnergy, potEnergy, dE)
 		}
 	}
 	fmt.Println()
