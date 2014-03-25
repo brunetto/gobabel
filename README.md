@@ -1,5 +1,41 @@
 Go version of a n-body integrator for the site [http://www.nbabel.org](http://www.nbabel.org). 
 
+Info
+----
+
+**Code:** goBabelS.go    
+**Date:** March 2014    
+**Author:** Brunetto Ziosi (University of Padova, Department of Physics and Astronomy, brunetto.ziosi@gmail.com)    
+**Integration scheme:** Predictor-corrector leapfrog    
+**Compiler:** go version go1.2.1 linux/amd64 installed with godeb [1]    
+**Operating system:** Ubuntu Linux 13.10 (3.11.0-18-generic)    
+**Hardware:** Intel Core 2 i7 CPU M640 2.80GHz    
+    
+**Initial conditions:** 1024 particles provided by the site    
+**Time step:** constant and shared 1e-3 N-body unit    
+**Performance:**  
+
+**_input_**    **_time [s]_**    
+1k       12.91    
+2k       51.56    
+4k       3m26.36s    
+
+NOTE:     
+This go version is translated from the C version found here [2].    
+Here [3] are available other versions more elaborated (and slower) and a faster version     
+provided by Michael Jones on the Golang-nuts mailing list [4] when discussing about the     
+compiler optimizations and how to speed-up the code with a better use of the memory.    
+    
+     
+[1] http://blog.labix.org/2013/06/15/in-flight-deb-packages-of-go    
+[2] http://www.nbabel.org/codes/13    
+[3] https://github.com/brunetto/gobabel    
+[4] https://groups.google.com/d/msg/golang-nuts/lhAD3LnfO88/jg6e5OZfSYYJ    
+
+
+Profiling
+=========
+
 Each folder has 
 
 * the source
